@@ -18,6 +18,7 @@ export const App: React.FC = () => {
 
   function loadTodos() {
     setLoading(true);
+
     getTodos()
       .then(setTodos)
       .catch(() => setErrorMessage('Unable to load todos'))
@@ -173,7 +174,12 @@ export const App: React.FC = () => {
               >
                 ×
               </button>
-              <div data-cy="TodoLoader" className="modal overlay">
+              <div
+                data-cy="TodoLoader"
+                className={classNames('modal overlay', {
+                  'is-active': loading,
+                })}
+              >
                 <div className="modal-background has-background-white-ter" />
                 <div className="loader" />
               </div>
